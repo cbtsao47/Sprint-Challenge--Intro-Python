@@ -36,7 +36,8 @@ def cityreader(cities=[]):
     with open('cities.csv', newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         next(csv_reader)
-        cities = [City(row[0], float(row[3]), float(row[4])) for row in csv_reader]
+        cities = [City(row[0], float(row[3]), float(row[4]))
+                  for row in csv_reader]
 
     csvfile.close()
     return cities
@@ -77,6 +78,12 @@ for c in cities:
 # Salt Lake City: (40.7774,-111.9301)
 
 # TODO Get latitude and longitude values from the user
+point_1 = input("Enter lat1,lon1:").split()
+point_2 = input('Enter lat2,lon2:').split()
+lat1 = point_1[0]
+lon1 = point_1[1]
+lat2 = point_2[0]
+lon2 = point_2[1]
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
@@ -86,5 +93,5 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # TODO Ensure that the lat and lon valuse are all floats
     # Go through each city and check to see if it falls within
     # the specified coordinates.
-
+    within= [for city in cities if((city.lat < abs(lat1) and city.lat > abs(lat2)) and (city.lon < -abs(lon1) and city.lon > -abs(lon2)))]
     return within
